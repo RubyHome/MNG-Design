@@ -1,0 +1,22 @@
+<div class="pan_content_menu_section">
+	<div class="pan_collection_container" infinite-scroll
+	[infiniteScrollDistance]="3"
+	[infiniteScrollThrottle]="100"
+	(scrolled)="onScroll()"
+	[scrollWindow]="false">
+	<div class="panera_overlay_dark"></div>
+		<ul class="collection pan_inner_collection">
+
+			<li class="collection-item" (click)="itemSelected(false)">
+				<i class="material-icons pan_menu_folder_icon">&#xE2C7;</i>
+				All Templates
+			</li>
+			<ul class="collection ">
+				<li class="collection-item" *ngFor="let item of iteamArray" (click)="itemSelected(true,$event)">
+					<i class="material-icons pan_menu_folder_icon">&#xE2C7;</i>
+					{{item.name}}
+				</li>
+			</ul>
+		</ul>
+	</div>
+</div>

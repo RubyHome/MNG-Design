@@ -1,0 +1,203 @@
+<!-- content section starts -->
+<section class="pan_content">
+	<div class="pan_content_menu">
+		<div class="pan_content_menu_head">
+			<span>Organization</span>
+			<div class="pan_menu_btnarea"  *ngIf="showButton==true">
+				<i class="material-icons">&#xE150;</i>
+				<i class="material-icons pan_org_close">&#xE14C;</i>
+			</div>
+		</div>
+	</div> <!-- menu section -->
+	<div class="pan_content_wrapper">
+		<my-left-nav (changeBtn)="changeBtn($event)"></my-left-nav>
+		<div class="pan_content_grid">
+			<div class="panera_overlay"></div>
+			<md-tab-group (selectChange)="tabSwap($event.index)" [selectedIndex] = selectedIndex>
+				<md-tab *ngFor="let tab of tabs">
+					<template  md-tab-label>{{tab.name }} - {{tab.id}} </template>
+					<template md-tab-content>
+						<div id="test1" class="col s12 pan_table_contentmain">
+							<div class="pan_table_head">
+								<span class="pan_tab_header">{{tab.title}}</span>
+								<span class="pan_tab_itemselected">{{tab.selectedRowCount}} item selected</span>
+							</div>
+							<div class="pan_table_head_buttons">
+
+								<!-- <button class="btn orange darken-2 pan_actions_btn">
+									<span>ACTIONS</span>
+									<a class="dropdown-button" data-activates='dropdown2'>
+										<i class="material-icons pan_dropicon">&#xE5C5;</i>
+									</a>
+								</button> -->
+									<div md2-menu>
+										<button class="btn btn-primary orange darken-2 pan_actions_btn" md2-menu-open>Actions <span class="caret"></span></button>
+	                                    <ul class="md2-menu-content actionsMenu">
+											<div class="actionsMenuMainDiv">
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE148;</i>
+													<div>New</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE838;</i>
+													<div>Update Charastic Values</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE8EF;</i>
+													<div>View Catalogs</div>
+												</a>
+												<a class="div_clr"></a>
+											</div>
+											<div class="actionsMenuMainDiv">
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE872;</i>
+													<div>Delete</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE149;</i>
+													<div>Export</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE8B6;</i>
+													<div>Search</div>
+												</a>
+												<a class="div_clr"></a>
+											</div>
+											<div class="actionsMenuMainDiv">
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE150;</i>
+													<div>Edit Item</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE2C4;</i>
+													<div>Export Template</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE150;</i>
+													<div class=" div_floatLeft">Import from Excel</div>
+												</a>
+												<a class="div_clr"></a>
+											</div>
+											<div class="actionsMenuMainDiv">
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE14F;</i>
+													<div>Variable Data Catalog List</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft">&#xE146;</i>
+													<div>Add to program</div>
+												</a>
+												<a class="md2-menu-item box_shadow div_floatLeft">
+													<i class="material-icons div_floatLeft"></i>
+													<div></div>
+												</a>
+												<a class="div_clr"></a>
+											</div>
+                                    	</ul>
+									</div>
+
+									<!-- <button class="btn orange darken-2 pan_actions_btn">
+										<span>ACTIONS</span>
+										<a class="dropdown-button" href="#" data-activates='dropdown2'>
+											<i class="material-icons pan_dropicon">&#xE5C5;</i>
+										</a>
+									</button> -->
+								<!-- <ul id="dropdown2" class="dropdown-content">
+									<li><a href="#">Edit Profile</a></li>
+									<li><a href="#">Logout</a></li>
+								</ul> -->
+
+								<div class="pan_search_filter_area">
+									<label for="autofocus" class="material-icons autoSuggestSearch" (click)="showAutoSuggestText()">&#xE8B6;</label><!-- search-->
+									<input  ng2-auto-complete class="autoSuggestText" id="autofocus"
+									  onfocus="this.value = '';"
+									  *ngIf="showAutoSuggest==true"
+								      [(ngModel)]="model4"
+								      placeholder=" Enter Here"
+								      [source]="googleGeoCode"								      
+								      display-property-name="formatted_address"
+								      path-to-data="results"
+								      min-chars="2" />
+								    <div md2-menu>
+										<i class="material-icons"  md2-menu-open>&#xE168;</i> <!-- move to inbox-->
+										<ul class="md2-menu-content right bottom ReportTab">
+										   <li><a class="md2-menu-item ReportIcons"><img src="../dist/images/google-drive-pdf-file.png">Generate PDF</a></li>
+										   <li><a class="md2-menu-item ReportIcons"><img src="../dist/images/office.png">Generate Excel</a></li>
+										</ul>
+									</div>
+									<i class="material-icons pan_filter_icon" (click)="myModalSide.open()">&#xE164;</i>
+								</div>
+							</div>
+							<div class="pan_check">
+								<input type="checkbox" [(ngModel)]="tab.selecteAllRows" (click)="selectAllRow(tab.selecteAllRows,tab)" class="filled-in" id="id" name="gridMastercheckbox" value="gridMastercheckbox"><label for="id" class="title"></label>
+							</div>
+							<ag-grid-ng2 #agGrid style="width: 100%; height: 100%;" class="ag-fresh"
+							[gridOptions]="tab.gridOptions"
+							(selectionChanged)="onSelectionChanged(tab)"
+							(gridReady)="onGridReady(tab)"
+							rowSelection="multiple"
+							enableColResize>
+							</ag-grid-ng2>
+						</div>
+					</template>
+				</md-tab>
+				<md-tab class="tab pan_tab_plus">
+					<template md-tab-label><i class="material-icons">&#xE145;</i></template>
+				</md-tab>
+			</md-tab-group>
+		</div>
+
+	<div class="pan_footer_area">
+		<div class="pan_footer_leftsection">
+			<button type="button" class="btn pan_add_btncircle" (click)="myModal.open()"><i class="material-icons">&#xE145;</i></button>
+		</div>
+	    <modal #myModal class="pan_modal_popup pan_add_group" [hideCloseButton]="true" [closeOnOutsideClick]="true">
+	        <modal-header>
+	            <h5>Add Group to All Entries</h5>
+	        </modal-header>
+	        <modal-content>
+	            <md-input placeholder="Name" [(ngModel)]="username"></md-input>
+	        </modal-content>
+	        <modal-footer>
+				<button class="pan_popup_btn-default" (click)="myModal.close()">Cancel</button>
+	        	<button class="pan_popup_btn-primary" (click)="myModal.close()">Save</button>
+	        </modal-footer>
+	    </modal>
+
+		<modal #myModalSide class="pan_modal_popup pan_toggle_popup" [hideCloseButton]="true" [closeOnOutsideClick]="true">
+			<modal-content>
+				<div class="app-input-section">
+					<md-input dividerColor="accent" placeholder="Item Name"></md-input>
+					<md-input dividerColor="accent" placeholder="Description"></md-input>
+					<md-input dividerColor="accent" placeholder="Template Name"></md-input>
+					<md-input dividerColor="accent" placeholder="Unit Cost"></md-input>
+					<md-input dividerColor="accent" placeholder="Weight"></md-input>
+					<md-input dividerColor="accent" placeholder="Kit Type"></md-input>
+				</div>
+
+			</modal-content>
+			<modal-footer>
+				<a #clearfilters> <span class="pan_clearfilter">CLEAR FILTERS</span></a>
+				<a #mybutton1 (click)="myModalSide.close()"> <span class="pan_cancelfilter">CANCEL</span></a>
+				<button type="button"><i class="material-icons">&#xE876;</i></button>
+			</modal-footer>
+		</modal>
+
+		<div class="pan_footer_rightsection">
+			<div class="pan_footer_rows">
+				<span>Rows Per Page :</span>
+				<span>10</span>
+				<i class="material-icons pan_dropicon">&#xE5C5;</i>
+			</div>
+
+			<div class="pan_paginationarea">
+				<span>{{from}}-{{to}} of {{totalPages}}</span>
+				<ul class="pagination pan_pagination">
+					<li class=""><a (click)="prevPage($event)"><i class="material-icons">&#xE314;</i></a></li>
+					<li class=""><a (click)="nextPage($event)"><i class="material-icons pan_page_right">&#xE315;</i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+		</div>
+</section> <!-- content section ends -->

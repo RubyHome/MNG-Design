@@ -1,0 +1,100 @@
+<header><!--header starts -->
+	<div class="row">
+		<div class=" col s6 m6 pan_header_left" >
+
+			<div class="pan_headcl01">
+				<ul id="dropdown1" class="dropdown-content">
+					<li><a href="#">item1</a></li>
+					<li><a href="#">item2</a></li>
+					<li><a href="#">item3</a></li>
+				</ul>
+				<div class="pan_logo_section"> <!-- logo-->
+					<div class="pan_logo_img"></div>
+				</div>
+			</div>
+			<div class="pan_header_head"> <!-- heading-->
+				<h5>Items
+					<!-- <i class="material-icons pan_menuicon">&#xE8B8;</i> -->
+					<!-- <button type="button" class="btn pan_add_btncircle" > --><i class="material-icons pan_menuicon pan_settings_icon" (click)="myModal2.open()">&#xE8B8;</i><!-- </button> -->
+
+				    <modal #myModal2 class="pan_modal_popup pan_add_user-pre" [hideCloseButton]="true" [closeOnOutsideClick]="true">
+				        <modal-header>
+				            <h5>Select User Preferences</h5>
+				        </modal-header>
+				        <modal-content>
+						    <div class="row">
+						      <div class="col s12 m6">
+						        <div class="panel panel-warning">
+						          <div class="panel-heading">
+						            Available
+						          </div>
+						          <div class="panel-body pan_user-pre_available" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers">
+						            <ul class="list-group" >
+						              <li *ngFor="let item of listBoxers" class="list-group-item" >{{item}}</li>
+						              <ul *ngFor="let _letter of letters ">
+					            		{{_letter}}
+					            		<li *ngFor="let item of listBoxers | filterletter; let i = index"dnd-sortable [sortableIndex]="i" class="list-group-item">
+					            				{{item}}
+					            		</li>
+					            	</ul>
+						            </ul>
+						          </div>
+						        </div>
+						      </div>
+						      <div class="col s12 m6">
+						        <div class="panel panel-success">
+						          <div class="panel-heading">
+						            Selected
+						          </div>
+						          <div class="panel-body pan_user-pre_selected" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamOne">
+						            <ul class="list-group" >
+						              <li *ngFor="let item of listTeamOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+						            </ul>
+						          </div>
+						        </div>
+						      </div>
+						    </div>
+				        </modal-content>
+				        <modal-footer>
+
+				            <button class="pan_popup_btn-default" (click)="myModal2.close()">Cancel</button>
+							<button class="pan_popup_btn-primary" (click)="myModal2.close()">Save</button>
+				        </modal-footer>
+				    </modal>
+
+				</h5>
+			</div>
+		</div>
+		<div class="col s6 m6 pan_header_right">
+			<div class="pan_head_prof_info">
+				<div  class="pan_head_prof_avatar"></div> <!-- profile image -->
+				<button type="button" class="btn pan_add_btncircle pan_notification_circle"><span>14</span></button>
+				<div  class="pan_head_prof_det">
+					<span class="pan_head_log_stat">
+						Logged in as
+					</span>
+					<span class="pan_head_log_name">
+						{{user_data.firstname}} {{user_data.lastname}}
+					</span>
+				</div> <!-- profile details -->
+				<div md2-menu class="pan_prof_dropdown">
+					<a class="dropdown-button" md2-menu-open data-activates='dropdown2'>
+						<i class="material-icons pan_dropicon">&#xE5C5;</i>
+					</a>
+				<ul class="md2-menu-content right bottom">
+					<li class="pan_prof_dropdown"><a class="md2-menu-item">
+						<i class="material-icons">
+							<button type="button" class="btn pan_add_btncircle pan_notification_circle"><span>14</span></button>
+						</i>
+						<span class="pan_prof_notification">Notifications</span></a></li>
+					<li class="pan_prof_dropdown"><a class="md2-menu-item"> <i class="material-icons">&#xE897;</i>
+						 Change Password</a></li>
+					<li class="pan_prof_dropdown"><a class="md2-menu-item" href="login"><i class="material-icons">&#xE8C6;</i>
+						Logout</a></li>
+				</ul>
+			</div>
+
+			</div>
+		</div>
+	</div>
+</header><!--header ends -->
